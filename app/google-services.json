@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "454340327853",
+    "firebase_url": "https://socialnetwork-329ea.firebaseio.com",
+    "project_id": "socialnetwork-329ea",
+    "storage_bucket": "socialnetwork-329ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454340327853:android:b2605c577e7a5fa2",
+        "android_client_info": {
+          "package_name": "diegoperego_it.socialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454340327853-m42cocqqo6ls9pqmpe34cfk3jvv4lqou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "diegoperego_it.socialnetwork",
+            "certificate_hash": "a997f8aef73db17c1d27753e285f3144fb2ff1e8"
+          }
+        },
+        {
+          "client_id": "454340327853-dumpueqjv7ridoh1666e602hbohq9ba2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz-PtAGhvlUrfC5jJKLNx_0oEzEu1bNsg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454340327853-dumpueqjv7ridoh1666e602hbohq9ba2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
