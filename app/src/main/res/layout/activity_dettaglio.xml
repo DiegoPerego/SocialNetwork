@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="diegoperego_it.socialnetwork.DettaglioActivity">
+
+
+
+    <TextView
+        android:id="@+id/tPostName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:fontFamily="serif"
+        android:text="Post Name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/tPublish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tPostName"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="monospace"
+        android:text="Pubblicato da:"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tDatePublish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tPublish"
+        android:layout_below="@+id/tPublish"
+        android:layout_marginTop="14dp"
+        android:fontFamily="serif-monospace"
+        android:text="In Data:"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tPostAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tPublish"
+        android:layout_marginStart="21dp"
+        android:layout_toEndOf="@+id/tPublish"
+        android:fontFamily="monospace"
+        android:text="Autor"
+        android:textAlignment="viewStart"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tPostDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tDatePublish"
+        android:layout_alignStart="@+id/tPostName"
+        android:fontFamily="serif-monospace"
+        android:text="Data"
+        android:textAlignment="viewStart"
+        android:textSize="15sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tDatePublish"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:padding="10dp"
+        android:fillViewport="false"
+        android:scrollbarStyle="insideInset">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tContenuto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Contenuto"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

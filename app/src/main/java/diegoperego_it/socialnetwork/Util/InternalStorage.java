@@ -23,7 +23,7 @@ public class InternalStorage {
         ObjectOutputStream oos = null;
 
         try {
-            fos = context.openFileOutput(key, context.MODE_PRIVATE);
+            fos = context.openFileOutput(key, Context.MODE_PRIVATE);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(object);
             oos.close();

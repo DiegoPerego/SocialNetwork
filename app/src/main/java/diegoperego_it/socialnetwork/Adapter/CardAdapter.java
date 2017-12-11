@@ -1,6 +1,7 @@
-package diegoperego_it.socialnetwork;
+package diegoperego_it.socialnetwork.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.Button;
 import java.util.List;
 
 import diegoperego_it.socialnetwork.Model.Gruppi;
+import diegoperego_it.socialnetwork.PostActivity;
+import diegoperego_it.socialnetwork.R;
+import diegoperego_it.socialnetwork.Util.InternalStorage;
 
 /**
  * Created by utente3.academy on 06-Dec-17.
@@ -33,8 +37,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewGruppi>{
     }
 
     @Override
-    public void onBindViewHolder(ViewGruppi holder, int position) {
-
+    public void onBindViewHolder(final ViewGruppi holder, int position) {
+        final Gruppi groups = gruppi.get(position);
+        holder.group.setText(groups.getNome());
+        holder.group.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalStorage.writeObject(context, "gruppo", groups.getNome());
+                Intent i = new Intent(context, PostActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override

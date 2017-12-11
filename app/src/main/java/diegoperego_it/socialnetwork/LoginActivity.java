@@ -2,6 +2,8 @@ package diegoperego_it.socialnetwork;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +26,9 @@ public class LoginActivity extends AppCompatActivity implements TaskDelegate {
     private ProgressDialog dialog;
     private Intent gruppi;
     private String nick;
+    private String nickPref;
     private String pass;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class LoginActivity extends AppCompatActivity implements TaskDelegate {
         password = findViewById(R.id.ePassword);
         login = findViewById(R.id.bLogin);
         final TaskDelegate delegate = this;
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferences.getString("nickname", "");
 
         gruppi = new Intent(getApplicationContext(), GruppiActivity.class);
 
@@ -46,6 +52,10 @@ public class LoginActivity extends AppCompatActivity implements TaskDelegate {
                 dialog = new ProgressDialog(LoginActivity.this);
                 dialog.setMessage("Caricamento");
                 dialog.show();
+
+                final SharedPreferences.Editor editor = preferences.edit();
+                nickPref = preferences.getString("nickname", "");
+
                 FirebaseRest.get("Users/" + nick + "/Password/", null, new AsyncHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -54,7 +64,8 @@ public class LoginActivity extends AppCompatActivity implements TaskDelegate {
                             String s = resp.substring(1, resp.length()-1);
                             if (!pass.equals("null")) {
                                 if (pass.equals(s)) {
-                                    InternalStorage.writeObject(getApplicationContext(), "nick", nick);
+                                    editor.putString("nickname", nick);
+                                    editor.apply();
                                     startActivity(gruppi);
                                     delegate.TaskCompleto("Caricamento completato");
                                 } else {

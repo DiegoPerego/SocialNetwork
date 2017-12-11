@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/PostCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/cardview_shadow_end_color"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <TextView
+                android:id="@+id/tAutor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tTitle"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="19dp"
+                android:text="Autore:"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/tAutor"
+                android:layout_marginTop="11dp"
+                android:text="Titolo:"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tData"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/tAutor"
+                android:layout_below="@+id/tAutor"
+                android:layout_marginTop="17dp"
+                android:text="Data Creazione:"
+                android:textAlignment="viewStart"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tTitleVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tTitle"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/tData"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tAutorVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tAutor"
+                android:layout_alignStart="@+id/tTitleVal"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tDataVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/tData"
+                android:layout_alignStart="@+id/tAutorVal"
+                android:text="TextView"
+                android:textAlignment="viewStart"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
