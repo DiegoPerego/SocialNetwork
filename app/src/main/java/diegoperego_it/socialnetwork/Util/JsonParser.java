@@ -35,22 +35,15 @@ public class JsonParser {
                 getKey = (String) iteratorN.next();
                 JSONObject group = nick.getJSONObject(getKey);
                 Iterator iteratorG = group.keys();
+                Gruppi gr = new Gruppi();
 
                 while (iteratorG.hasNext()){
 
                     String key = (String) iteratorG.next();
-                    JSONObject nome = group.getJSONObject(key);
-                    Gruppi gr = new Gruppi();
-                    Iterator iteratorNa = nome.keys();
-
-                    while (iteratorNa.hasNext()){
-
-                        String na = (String) iteratorNa.next();
-                        String s = nome.getString(na);
-                        gr.setNome(s);
-                    }
-                    gruppi.add(gr);
+                    String grou = group.getString(key);
+                    gr.setNome(grou);
                 }
+                gruppi.add(gr);
             }
 
         } catch (JSONException e) {

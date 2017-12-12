@@ -1,12 +1,17 @@
 package diegoperego_it.socialnetwork;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,12 +25,13 @@ import diegoperego_it.socialnetwork.Adapter.PostAdapter;
 import diegoperego_it.socialnetwork.Model.Comunity;
 import diegoperego_it.socialnetwork.Model.Gruppi;
 import diegoperego_it.socialnetwork.Model.Post;
+import diegoperego_it.socialnetwork.Util.CardViewCL;
 import diegoperego_it.socialnetwork.Util.FirebaseRest;
 import diegoperego_it.socialnetwork.Util.InternalStorage;
 import diegoperego_it.socialnetwork.Util.JsonParser;
 import diegoperego_it.socialnetwork.Util.TaskDelegate;
 
-public class PostActivity extends AppCompatActivity implements TaskDelegate{
+public class PostActivity extends AppCompatActivity implements TaskDelegate, CardViewCL{
 
     private TextView nomegruppo;
     private String name;
@@ -36,6 +42,7 @@ public class PostActivity extends AppCompatActivity implements TaskDelegate{
     private PostAdapter adapter;
     private Comunity comunity;
     private Gruppi group;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class PostActivity extends AppCompatActivity implements TaskDelegate{
         TaskDelegate delegate = this;
 
         nomegruppo = findViewById(R.id.tgruppoN);
-        nomegruppo.setText(name);
+        fab = findViewById(R.id.fab);
 
         recyclerView = findViewById(R.id.recyclerPost);
         recyclerView.setHasFixedSize(true);
@@ -54,14 +61,23 @@ public class PostActivity extends AppCompatActivity implements TaskDelegate{
 
         name = (String) InternalStorage.readObject(getApplicationContext(), "gruppo");
         comunity = (Comunity)InternalStorage.readObject(getApplicationContext(), "comunity");
+        nomegruppo.setText(name);
         group = comunity.checkGruppo(name);
 
         if(group.getPosts().size() != 0){
-            adapter = new PostAdapter(this, group.getPosts());
+            adapter = new PostAdapter(this, group.getPosts(), this);
             recyclerView.setAdapter(adapter);
         }else {
             restPost(delegate);
         }
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), InsertActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void restPost(final TaskDelegate delegate){
@@ -96,6 +112,18 @@ public class PostActivity extends AppCompatActivity implements TaskDelegate{
         dialog.dismiss();
         dialog.cancel();
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCardClick(int pos, Post post, CardView cardView) {
+        Intent intent = new Intent(this, DettaglioActivity.class);
+        intent.putExtra("titolo", post.getTitolo());
+
+        ActivityOptions activityOptions = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, cardView, "detail");
+        }
+        startActivity(intent, activityOptions.toBundle());
     }
 }
 

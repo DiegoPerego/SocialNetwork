@@ -40,4 +40,13 @@ public class Gruppi implements Serializable{
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+    public Post findPost (String titolo){
+        for (Post post : posts){
+            if (post.getTitolo().equals(titolo)){
+                return post;
+            }
+        }
+        return null;
+    }
 }

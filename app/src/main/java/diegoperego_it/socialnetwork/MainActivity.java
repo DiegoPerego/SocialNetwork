@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        nickname = preferences.getString("nickname", "");
+        nickname = preferences.getString("nickname", "null");
         login = new Intent(getApplicationContext(), LoginActivity.class);
         gruppi = new Intent(getApplicationContext(), GruppiActivity.class);
 
-        if(nickname != null){
+        if(!nickname.equals("null")){
             startActivity(gruppi);
         }else {
             startActivity(login);

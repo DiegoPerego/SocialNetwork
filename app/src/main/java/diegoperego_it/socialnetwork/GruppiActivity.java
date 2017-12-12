@@ -2,6 +2,7 @@ package diegoperego_it.socialnetwork;
 
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +35,7 @@ public class GruppiActivity extends AppCompatActivity implements TaskDelegate{
     private List<Gruppi> gruppi;
     private Comunity comunity;
     private String nickname;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,10 @@ public class GruppiActivity extends AppCompatActivity implements TaskDelegate{
 
         nick = findViewById(R.id.tNickname);
         TaskDelegate delegate = this;
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        nickname = preferences.getString("nickname", "");
+        nick.setText(nickname);
 
-        nick.setText((String) InternalStorage.readObject(getApplicationContext(), "nick"));
         comunity = (Comunity)InternalStorage.readObject(getApplicationContext(), "comunity");
 
         nickname = nick.getText().toString();
@@ -70,7 +74,7 @@ public class GruppiActivity extends AppCompatActivity implements TaskDelegate{
 
         gruppi = new ArrayList<>();
 
-        FirebaseRest.get("Users/" + nickname + "/", null, new AsyncHttpResponseHandler() {
+        FirebaseRest.get("Users/" + nickname + "/Gruppi", null, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String resp = new String(responseBody);

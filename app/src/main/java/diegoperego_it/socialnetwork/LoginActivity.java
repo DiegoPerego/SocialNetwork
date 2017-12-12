@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity implements TaskDelegate {
         login = findViewById(R.id.bLogin);
         final TaskDelegate delegate = this;
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        preferences.getString("nickname", "");
 
         gruppi = new Intent(getApplicationContext(), GruppiActivity.class);
 
